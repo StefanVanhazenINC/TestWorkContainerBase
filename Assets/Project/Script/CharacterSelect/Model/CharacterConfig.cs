@@ -12,11 +12,11 @@ public class CharacterConfig : ScriptableObject, ICharacter
     [SerializeField] private Sprite avatar;
     [SerializeField] private string modelPath;
 
-    public int Id => this.id;
-    public string Name => this.characterName;
-    public int Level => this.level;
-    public Sprite Avatar => this.avatar;
-    public string ModelPath => this.modelPath;
+    public int Id => id;
+    public string LevelName => characterName;
+    public int Level => level;
+    public Sprite Avatar => avatar;
+    public string ModelPath => modelPath;
 
 
 #if UNITY_EDITOR

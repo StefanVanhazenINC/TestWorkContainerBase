@@ -9,5 +9,5 @@ public abstract class ObjectManager<T> where T : IObject
         _objects = objectsToLoad;
     }
 
-    public abstract void SelectObject(int id);
+    public abstract int SelectObject(int id);
 }

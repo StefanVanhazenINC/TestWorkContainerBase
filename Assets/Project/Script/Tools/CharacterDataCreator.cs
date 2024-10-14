@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class CharacterCreator 
+public class CharacterDataCreator
 {
     private const string Path = "Assets/Project/Resources/Character/NewCharacter_";
 

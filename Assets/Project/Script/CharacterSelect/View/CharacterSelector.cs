@@ -4,9 +4,15 @@ using UnityEngine;
 public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private DataPack dataPackCharacters;
+    private CharacterManager _characterManager;
     private CharacterConfig[] _characters;
     private int _currentIndex = 0;
 
+    public void Construct(CharacterManager characterManager) 
+    {
+        _characterManager = characterManager;
+        LoadCharacters();
+    }
     private void OnEnable()
     {
         EventManager.OnObjectSelected += SetCurrentCharacter;
@@ -43,22 +49,11 @@ public class CharacterSelector : MonoBehaviour
             EventManager.ObjectSetActive(_characters[_currentIndex]);
             return;
         }
-
-        for (int i = 0; i < _characters.Length; i++)
-        {
-            if (_characters[i].Id == newCharacter.Id)
-            {
-                _currentIndex = i;
-                break;
-            }
-        }
-    }
-
-    private void Start()
-    {
-        LoadCharacters();
+        _currentIndex = _characterManager.SelectObject(newCharacter.Id);
        
     }
+
+  
 
     private void LoadCharacters()
     {
@@ -81,24 +76,41 @@ public class CharacterSelector : MonoBehaviour
         }
     }
 
+    //private void MoveSelection(int step)
+    //{
+    //    _currentIndex += step;
+    //    if (_currentIndex < 0) 
+    //    {
+    //        _currentIndex = _characters.Length - 1;
+    //    }
+    //    else
+    //    {
+    //        if (_currentIndex >= _characters.Length)
+    //        {
+    //            _currentIndex = 0;
+    //        }
+    //    }
+
+    //    SelectCharacter(_currentIndex);
+    //}
     private void MoveSelection(int step)
     {
-        _currentIndex += step;
-        if (_currentIndex < 0) 
+        int index = _currentIndex + step;
+
+        if (index < 0)
         {
-            _currentIndex = _characters.Length - 1;
+            index = _characters.Length - 1;
         }
         else
         {
-            if (_currentIndex >= _characters.Length)
+            if (index >= _characters.Length)
             {
-                _currentIndex = 0;
+                index = 0;
             }
         }
 
-        SelectCharacter(_currentIndex);
+        SelectCharacter(index);
     }
-
     private void SelectCharacter(int index)
     {
         EventManager.CharacterSelected(_characters[index]);

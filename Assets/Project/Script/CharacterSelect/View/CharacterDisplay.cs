@@ -28,7 +28,7 @@ public class CharacterDisplay : ObjectView
 
         //
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine(character.Name);
+        sb.AppendLine(character.LevelName);
         sb.AppendLine();
         sb.AppendLine($"Level: {character.Level}");
         sb.AppendLine($"ID: {character.Id}");
@@ -57,7 +57,7 @@ public class CharacterDisplay : ObjectView
 
         //
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine(character.Name);
+        sb.AppendLine(character.LevelName);
         sb.AppendLine();
         sb.AppendLine($"Level: {character.Level}");
         sb.AppendLine($"ID: {character.Id}");

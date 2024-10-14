@@ -25,7 +25,7 @@ public class CharacterView : ObjectView
     public override void SetDislay(IObject newObject)
     {
         _character = newObject as CharacterConfig;
-        SetText(_character.Name);
+        SetText(_character.LevelName);
         SetImage(_character.Avatar);
     }
 }
