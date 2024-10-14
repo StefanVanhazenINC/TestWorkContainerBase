@@ -9,11 +9,11 @@ public class CharacterActiveDisplayInstaller : MonoBehaviour
     private void OnEnable()
     {
         characterDisplay??=GetComponent<CharacterDisplay>();
-        EventManager.OnChangeActiveObject += characterDisplay.DisplayCharacter;
+        EventManager.OnChangeActiveObject += characterDisplay.SetDislay;
     }
 
     private void OnDisable()
     {
-        EventManager.OnChangeActiveObject -= characterDisplay.DisplayCharacter;
+        EventManager.OnChangeActiveObject -= characterDisplay.SetDislay;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CharacterView : ObjectView
@@ -21,10 +22,10 @@ public class CharacterView : ObjectView
         EventManager.CharacterSelected(_character);
     }
 
-    public void DisplayCharacter(CharacterConfig character)
+    public override void SetDislay(IObject newObject)
     {
-        this._character = character;
-        SetText(character.Name);
-        SetImage(character.Avatar);
+        _character = newObject as CharacterConfig;
+        SetText(_character.Name);
+        SetImage(_character.Avatar);
     }
 }

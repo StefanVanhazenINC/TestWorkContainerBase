@@ -9,12 +9,12 @@ public class CharacterSelectDisplayInstaller : MonoBehaviour
     private void OnEnable()
     {
         characterDisplay??= GetComponent<CharacterDisplay>();
-        EventManager.OnObjectSelected += characterDisplay.DisplayCharacter;
+        EventManager.OnObjectSelected += characterDisplay.SetDislay;
     }
 
     private void OnDisable()
     {
-        EventManager.OnObjectSelected -= characterDisplay.DisplayCharacter;
+        EventManager.OnObjectSelected -= characterDisplay.SetDislay;
     }
 
 }
