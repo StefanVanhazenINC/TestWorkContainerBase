@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CharacterView : ObjectView
 {
     [SerializeField] private Button selectButton;
-    private MyCharacter character;
+    private CharacterConfig _character;
 
     private void OnEnable()
     {
@@ -18,12 +18,12 @@ public class CharacterView : ObjectView
 
     private void ButtonClicked()
     {
-        EventManager.CharacterSelected(character);
+        EventManager.CharacterSelected(_character);
     }
 
-    public void DisplayCharacter(MyCharacter character)
+    public void DisplayCharacter(CharacterConfig character)
     {
-        this.character = character;
+        this._character = character;
         SetText(character.Name);
         SetImage(character.Avatar);
     }

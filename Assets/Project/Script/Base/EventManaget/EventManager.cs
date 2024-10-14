@@ -19,4 +19,10 @@ public class EventManager
     {
         OnObjectSetActive?.Invoke(newObject);
     }
+
+    public static event Action<IObject> OnChangeActiveObject;
+    public static void ChangeActiveObject(IObject newActiveObject)
+    {
+        OnChangeActiveObject?.Invoke(newActiveObject);
+    }
 }

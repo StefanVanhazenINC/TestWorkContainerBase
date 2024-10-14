@@ -17,15 +17,15 @@ public class ModelLoader : MonoBehaviour
 
     void LoadCharacterModel(IObject newObject)
     {
-        MyCharacter character;
+        CharacterConfig character;
 
         try
         {
-            character = (MyCharacter)newObject;
+            character = (CharacterConfig)newObject;
         }
         catch (InvalidCastException)
         {
-            Debug.LogError($"The provided object cannot be cast to MyCharacter.");
+            Debug.LogError($"The provided object cannot be cast to CharacterConfig.");
             return;
         }
         catch (Exception ex)

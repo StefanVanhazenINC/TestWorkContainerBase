@@ -3,46 +3,46 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     [SerializeField] private float resetTimerValue = 0.1f;
-    private float inputTimer;
-    private InputDirection lastDirection = InputDirection.None;
+    private float _inputTimer;
+    private InputDirection _lastDirection = InputDirection.None;
 
-    private IInputHandler inputHandler;
+    private IInputHandler _inputHandler;
 
 
     private void Start()
     {
 #if UNITY_STANDALONE || UNITY_WEBGL
-        inputHandler = new KeyboardMouseInputHandler();
+        _inputHandler = new KeyboardMouseInputHandler();
 #elif UNITY_IOS || UNITY_ANDROID
         inputHandler = new TouchInputHandler();
 #endif
-        inputTimer = resetTimerValue;
+        _inputTimer = resetTimerValue;
     }
 
     private void Update()
     {
-        InputDirection currentDirection = inputHandler.GetDirection();
+        InputDirection currentDirection = _inputHandler.GetDirection();
 
         if (currentDirection == InputDirection.None)
         {
-            inputTimer = resetTimerValue;
+            _inputTimer = resetTimerValue;
             return;
         }
 
-        if (lastDirection != InputDirection.None && currentDirection != lastDirection)
+        if (_lastDirection != InputDirection.None && currentDirection != _lastDirection)
         {
-            lastDirection = currentDirection;
-            inputTimer = resetTimerValue;
+            _lastDirection = currentDirection;
+            _inputTimer = resetTimerValue;
             return;
         }
 
-        inputTimer -= Time.deltaTime;
-        if (inputTimer <= 0)
+        _inputTimer -= Time.deltaTime;
+        if (_inputTimer <= 0)
         {
             EventManager.InputDirectionSelected(currentDirection);
-            inputTimer = resetTimerValue;
+            _inputTimer = resetTimerValue;
         }
 
-        lastDirection = currentDirection;
+        _lastDirection = currentDirection;
     }
 }

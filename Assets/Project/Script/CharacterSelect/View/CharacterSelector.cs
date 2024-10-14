@@ -4,8 +4,8 @@ using UnityEngine;
 public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private DataPack dataPackCharacters;
-    private MyCharacter[] characters;
-    private int currentIndex = 0;
+    private CharacterConfig[] _characters;
+    private int _currentIndex = 0;
 
     private void OnEnable()
     {
@@ -21,15 +21,15 @@ public class CharacterSelector : MonoBehaviour
 
     private void SetCurrentCharacter(IObject newObject)
     {
-        MyCharacter newCharacter;
+        CharacterConfig newCharacter;
 
         try
         {
-            newCharacter = (MyCharacter)newObject;
+            newCharacter = (CharacterConfig)newObject;
         }
         catch (InvalidCastException)
         {
-            Debug.LogError($"The provided object cannot be cast to MyCharacter.");
+            Debug.LogError($"The provided object cannot be cast to CharacterConfig.");
             return;
         }
         catch (Exception ex)
@@ -38,16 +38,17 @@ public class CharacterSelector : MonoBehaviour
             return;
         }
 
-        if (characters[currentIndex].Id == newCharacter.Id)
+        if (_characters[_currentIndex].Id == newCharacter.Id)
         {
+            EventManager.ObjectSetActive(_characters[_currentIndex]);
             return;
         }
 
-        for (int i = 0; i < characters.Length; i++)
+        for (int i = 0; i < _characters.Length; i++)
         {
-            if (characters[i].Id == newCharacter.Id)
+            if (_characters[i].Id == newCharacter.Id)
             {
-                currentIndex = i;
+                _currentIndex = i;
                 break;
             }
         }
@@ -56,19 +57,12 @@ public class CharacterSelector : MonoBehaviour
     private void Start()
     {
         LoadCharacters();
-        if (characters.Length > 0)
-        {
-            SelectCharacter(currentIndex);
-        }
-        else
-        {
-            Debug.LogError("[CharacterSelector] Empty DataPack");
-        }
+       
     }
 
     private void LoadCharacters()
     {
-        characters = dataPackCharacters.GetItems<MyCharacter>();
+        _characters = dataPackCharacters.GetItems<CharacterConfig>();
     }
 
     private void GetInput(InputDirection direction)
@@ -82,31 +76,31 @@ public class CharacterSelector : MonoBehaviour
                 MoveSelection(1);
                 break;
             case InputDirection.Up:
-                EventManager.ObjectSetActive(characters[currentIndex]); 
+                EventManager.ObjectSetActive(_characters[_currentIndex]); 
                 break;
         }
     }
 
     private void MoveSelection(int step)
     {
-        currentIndex += step;
-        if (currentIndex < 0) 
+        _currentIndex += step;
+        if (_currentIndex < 0) 
         {
-            currentIndex = characters.Length - 1;
+            _currentIndex = _characters.Length - 1;
         }
         else
         {
-            if (currentIndex >= characters.Length)
+            if (_currentIndex >= _characters.Length)
             {
-                currentIndex = 0;
+                _currentIndex = 0;
             }
         }
 
-        SelectCharacter(currentIndex);
+        SelectCharacter(_currentIndex);
     }
 
     private void SelectCharacter(int index)
     {
-        EventManager.CharacterSelected(characters[index]);
+        EventManager.CharacterSelected(_characters[index]);
     }
 }

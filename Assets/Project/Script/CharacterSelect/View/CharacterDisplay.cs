@@ -4,32 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterDisplay : MonoBehaviour
+public class CharacterDisplay : ObjectView
 {
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Image avatarImage;
 
-    private void OnEnable()
+    public void DisplayCharacter(IObject newObject)
     {
-        EventManager.OnObjectSelected += DisplayCharacter;
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnObjectSelected -= DisplayCharacter;
-    }
-
-    private void DisplayCharacter(IObject newObject)
-    {
-        MyCharacter character;
+        CharacterConfig character;
 
         try
         {
-            character = (MyCharacter)newObject;
+            character = (CharacterConfig)newObject;
         }
         catch (InvalidCastException)
         {
-            Debug.LogError($"The provided object cannot be cast to MyCharacter.");
+            Debug.LogError($"The provided object cannot be cast to CharacterConfig.");
             return;
         }
         catch (Exception ex)
@@ -38,13 +26,16 @@ public class CharacterDisplay : MonoBehaviour
             return;
         }
 
+        //
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine(character.name);
+        sb.AppendLine(character.Name);
         sb.AppendLine();
         sb.AppendLine($"Level: {character.Level}");
         sb.AppendLine($"ID: {character.Id}");
+        //
+        SetText(sb.ToString());
+        SetImage(character.Avatar);
 
-        nameText.text = sb.ToString();
-        avatarImage.sprite = character.Avatar;
+
     }
 }

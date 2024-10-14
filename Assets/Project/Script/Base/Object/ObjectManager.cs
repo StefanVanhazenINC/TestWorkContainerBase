@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class ObjectManager<T> where T : IObject
 {
-    protected T[] objects;
+    protected T[] _objects;
 
     public virtual void LoadObjects(T[] objectsToLoad)
     {
-        objects = objectsToLoad;
+        _objects = objectsToLoad;
     }
 
     public abstract void SelectObject(int id);
