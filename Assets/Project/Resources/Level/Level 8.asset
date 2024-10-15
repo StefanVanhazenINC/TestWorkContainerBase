@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9
   levelName: Level 8
-  description: 
+  description: 9
   icon: {fileID: 0}
   sceneName: Level 8

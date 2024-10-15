@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: 9222717704912570496}
   - component: {fileID: 6284873599124935698}
   - component: {fileID: 5519919487170310556}
+  - component: {fileID: 7461471966988440895}
+  - component: {fileID: 1114275888199829312}
   m_Layer: 5
   m_Name: LevelPanel
   m_TagString: Untagged
@@ -287,6 +289,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7461471966988440895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678641683587569198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b9fad9774ff0645a34df31f11e26e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoText: {fileID: 6389575599543529634}
+  infoImage: {fileID: 654026125228075309}
+  _loadingLevelBtn: {fileID: 1606979331685447458}
+--- !u!114 &1114275888199829312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678641683587569198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc6128d34fb07d4b9efdc0a2a633ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDisplay: {fileID: 0}
 --- !u!1 &5067464454081670362
 GameObject:
   m_ObjectHideFlags: 0

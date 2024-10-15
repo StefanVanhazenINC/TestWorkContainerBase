@@ -1,11 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class CharacterView : ObjectView<CharacterConfig>
+public class LevelView : ObjectView<LevelConfig>
 {
     [SerializeField] private Button selectButton;
-    private CharacterConfig _character;
+    private LevelConfig _character;
 
     private void OnEnable()
     {
@@ -21,12 +22,12 @@ public class CharacterView : ObjectView<CharacterConfig>
     {
         EventManager.ObjectSelected(_character);
     }
-  
-    public override void SetDisplayInfo(CharacterConfig newObject)
+
+ 
+    public override void SetDisplayInfo(LevelConfig newObject)
     {
         _character = newObject;
-        SetText(newObject.LevelName);
-        SetImage(newObject.Avatar);
-
-    }    
-}        
+        SetText(_character.LevelName);
+        SetImage(_character.Icon);
+    }
+}

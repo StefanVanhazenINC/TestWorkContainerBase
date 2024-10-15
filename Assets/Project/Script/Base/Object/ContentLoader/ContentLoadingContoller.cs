@@ -1,10 +1,10 @@
 
 using UnityEngine;
 
-public abstract class ContentLoadingContoller<View,Data> : MonoBehaviour where View : ObjectView where Data : class, IObject 
+public abstract class ContentLoadingContoller<View,Data> : MonoBehaviour where View : ObjectView<Data> where Data : class, IObject 
 {
     [SerializeField] private DataPack dataPack;
-    [SerializeField] private View iewPrefab;
+    [SerializeField] private View viewPrefab;
     [SerializeField] private Transform viewParent;
 
     
@@ -29,7 +29,7 @@ public abstract class ContentLoadingContoller<View,Data> : MonoBehaviour where V
     {
         foreach (Data character in characters)
         {
-            View viewInstance = Instantiate(iewPrefab, viewParent);
+            View viewInstance = Instantiate(viewPrefab, viewParent);
             SetDisplay(viewInstance,character);
         }
     }

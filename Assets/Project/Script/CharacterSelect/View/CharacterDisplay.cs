@@ -2,69 +2,26 @@ using System;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class CharacterDisplay : ObjectView
+public class CharacterDisplay : ObjectView<CharacterConfig>
 {
-    public override void SetDislay(IObject newObject)
+    
+    public override void SetDisplayInfo(CharacterConfig newObject)
     {
-
-        CharacterConfig character;
-
-        try
-        {
-            character = (CharacterConfig)newObject;
-        }
-        catch (InvalidCastException)
-        {
-            Debug.LogError($"The provided object cannot be cast to CharacterConfig.");
-            return;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Error: {ex.Message}");
-            return;
-        }
-
-        //
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine(character.LevelName);
+        sb.AppendLine(newObject.LevelName);
         sb.AppendLine();
-        sb.AppendLine($"Level: {character.Level}");
-        sb.AppendLine($"ID: {character.Id}");
+        sb.AppendLine($"Level: {newObject.Level}");
+        sb.AppendLine($"ID: {newObject.Id}");
         //
         SetText(sb.ToString());
-        SetImage(character.Avatar);
-    }
-    public void DisplayCharacter(IObject newObject)
-    {
-        CharacterConfig character;
-
-        try
-        {
-            character = (CharacterConfig)newObject;
-        }
-        catch (InvalidCastException)
-        {
-            Debug.LogError($"The provided object cannot be cast to CharacterConfig.");
-            return;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Error: {ex.Message}");
-            return;
-        }
-
-        //
-        StringBuilder sb = new StringBuilder();
-        sb.AppendLine(character.LevelName);
-        sb.AppendLine();
-        sb.AppendLine($"Level: {character.Level}");
-        sb.AppendLine($"ID: {character.Id}");
-        //
-        SetText(sb.ToString());
-        SetImage(character.Avatar);
-
-
-    }
-}
+        SetImage(newObject.Avatar);
+    }   
+}       
+        
+        
+        
+        
+        

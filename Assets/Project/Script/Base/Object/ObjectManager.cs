@@ -10,4 +10,10 @@ public abstract class ObjectManager<T> where T : IObject
     }
 
     public abstract int SelectObject(int id);
+
+    public abstract T GetObject(int id);
+    public int GetLenght() 
+    {
+        return _objects.Length;
+    }
 }

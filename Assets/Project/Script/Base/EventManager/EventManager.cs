@@ -2,6 +2,12 @@ using System;
 
 public class EventManager
 {
+    public static event Action OnLevelLoading;
+    public static void LoadingLevel() 
+    {
+        OnLevelLoading?.Invoke();
+    }
+
     public static event Action<InputDirection> OnInputDirectionSelected;
     public static void InputDirectionSelected(InputDirection direction)
     {
@@ -9,7 +15,7 @@ public class EventManager
     }
 
     public static event Action<IObject> OnObjectSelected;
-    public static void CharacterSelected(IObject newObject)
+    public static void ObjectSelected(IObject newObject)
     {
         OnObjectSelected?.Invoke(newObject);
     }

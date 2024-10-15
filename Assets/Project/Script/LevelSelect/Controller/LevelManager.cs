@@ -1,11 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManager : ObjectManager<CharacterConfig>
+public class LevelManager : ObjectManager<LevelConfig>
 {
 
-    public override void LoadObjects(CharacterConfig[] charactersToLoad)
+    public override void LoadObjects(LevelConfig[] levelToLoad)
     {
-        base.LoadObjects(charactersToLoad);
+        base.LoadObjects(levelToLoad);
     }
 
     public override int SelectObject(int id)
@@ -19,7 +21,7 @@ public class CharacterManager : ObjectManager<CharacterConfig>
         }
         return -1;
     }
-    public override CharacterConfig GetObject(int id)
+    public override LevelConfig GetObject(int id)
     {
         return _objects[id];
     }
